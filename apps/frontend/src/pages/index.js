@@ -25,12 +25,14 @@ export default function Home() {
       setIsTyping(true);
 
       try {
-        const response = await fetch("/api/chat", {
+        const response = await fetch("http://localhost:8000/api/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ message: input }),
+          body: JSON.stringify({ 
+            messages: [{ role: "user", content: input }]
+          }),
         });
 
         if (response.ok) {
